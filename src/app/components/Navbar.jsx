@@ -5,23 +5,48 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-[#333] p-3 flex justify-between">
-        <div className="font-bold">QFULLTICKET</div>
+        <div className="font-bold text-lime-400">QFULLTICKET</div>
         <div>
           <ul className="flex">
-            <li className="px-4">
-              <Link href={"/home"}>Home</Link>
+            <li className="">
+              <Link
+                href={"/home"}
+                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+              >
+                Home
+              </Link>
             </li>
-            <li className="px-4">
-              <Link href={"/concert-details"}>Concert Details</Link>
+            <li className="">
+              <Link
+                href={"/concert-details"}
+                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+              >
+                Concert Details
+              </Link>
             </li>
-            <li className="px-4">
-              <Link href={"/seat-selection"}>Seat Selection</Link>
+            <li className="">
+              <Link
+                href={"/seat-selection"}
+                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+              >
+                Seat Selection
+              </Link>
             </li>
-            <li className="px-4">
-              <Link href={"/payment"}>Payment</Link>
+            <li className="">
+              <Link
+                href={"/payment"}
+                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+              >
+                Payment
+              </Link>
             </li>
-            <li className="px-4">
-              <Link href={"/order-history"}>Order History</Link>
+            <li className="">
+              <Link
+                href={"/order-history"}
+                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+              >
+                Order History
+              </Link>
             </li>
           </ul>
         </div>
