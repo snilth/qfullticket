@@ -2,7 +2,7 @@ import React from 'react'
 
 const ConcertDetailPage = () => {
   return (
-    <div>Concert Details</div>
+    <div className='text-[#333]'>Concert Details</div>
   )
 }
 

@@ -10,7 +10,7 @@ const Navbar = () => {
             <li className="">
               <Link
                 href={"/"}
-                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+                className="hover:text-red-500 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
               >
                 Home
               </Link>
@@ -18,7 +18,7 @@ const Navbar = () => {
             <li className="">
               <Link
                 href={"/concert-details"}
-                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+                className="hover:text-red-500 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
               >
                 Concert & Entertainment
               </Link>
@@ -26,7 +26,7 @@ const Navbar = () => {
             <li className="">
               <Link
                 href={"/seat-selection"}
-                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+                className="hover:text-red-500 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
               >
                 Seat Selection
               </Link>
@@ -34,7 +34,7 @@ const Navbar = () => {
             <li className="">
               <Link
                 href={"/payment"}
-                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+                className="hover:text-red-500 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
               >
                 Payment
               </Link>
@@ -42,7 +42,7 @@ const Navbar = () => {
             <li className="">
               <Link
                 href={"/order-history"}
-                className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+                className="hover:text-red-500 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
               >
                 Order History
               </Link>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const OrderHistoryPage = () => {
   return (
-    <div>Order History</div>
+    <div className='text-[#333]'>Order History</div>
   )
 }
 

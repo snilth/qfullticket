@@ -6,7 +6,8 @@ export default function Home() {
   return (
     <>
       <div>
-        <div className="font-bold text-4xl text-center">DISCOVER EVENTS</div>
+        <div className="font-bold text-4xl text-center text-[#333]">DISCOVER EVENTS</div>
+        <p href="" className="font-bold text-2xl text-center text-[#333]">"จองได้" ก็ "จ่ายตังค์"</p>
         <form className="max-w-2xl mx-auto">
           <label
             htmlFor="default-search"

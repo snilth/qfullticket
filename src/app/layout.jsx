@@ -30,19 +30,20 @@ export default function RootLayout({ children }) {
         <header className="bg-[#222] py-2">
           <div className="flex justify-between text-center items-center m-8">
             <Link href={"/"} className="text-center">
-              <h1 className="text-4xl font-bold text-lime-400">QFull Ticket</h1>
+              <h1 className="text-4xl font-bold text-red-500">234 Ticket</h1>
             </Link>
-            <Link href={"/login"}>
-              <h3 className="p-2 font-bold text-lime-400 hover:text-[#f5f5f5] hover:bg-lime-400 transition-all duration-300 ease-in-out border rounded-md border-lime-400">
-                Login / Register
-              </h3>
-            </Link>
+            <button
+              onClick={""} // if was clicked Modal will open
+              className="p-2 font-bold text-red-500 hover:text-[#f5f5f5] hover:bg-red-500 transition-all duration-300 ease-in-out border rounded-md border-red-500"
+            >
+              Login / Register
+            </button>
           </div>
           <div>
             <Navbar />
           </div>
         </header>
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );

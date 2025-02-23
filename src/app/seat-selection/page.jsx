@@ -2,7 +2,7 @@ import React from 'react'
 
 const SeatSelectionPage = () => {
   return (
-    <div>Seat Selection</div>
+    <div className='text-[#333]'>Seat Selection</div>
   )
 }
 
