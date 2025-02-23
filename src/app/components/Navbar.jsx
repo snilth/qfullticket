@@ -4,13 +4,12 @@ import Link from "next/link";
 const Navbar = () => {
   return (
     <>
-      <nav className="bg-[#333] p-3 flex justify-between">
-        <div className="font-bold text-lime-400">QFULLTICKET</div>
+      <nav className="bg-[#333] p-3">
         <div>
-          <ul className="flex">
+          <ul className="flex text-center justify-center">
             <li className="">
               <Link
-                href={"/home"}
+                href={"/"}
                 className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
               >
                 Home
@@ -21,7 +20,7 @@ const Navbar = () => {
                 href={"/concert-details"}
                 className="hover:text-lime-400 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
               >
-                Concert Details
+                Concert & Entertainment
               </Link>
             </li>
             <li className="">
