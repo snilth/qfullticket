@@ -142,16 +142,19 @@ const Footer = () => {
                 <h3 className="text-2xl font-bold text-gray-800">FAQ</h3>
                 <dl className="mt-4 space-y-1">
                   <dt className="font-semibold text-gray-700">
-                    <Link href="/faq">How to Buy Tickets?</Link>
+                    <Link href="/faq/buy">How to Buy Tickets?</Link>
                   </dt>
                   <dt className="font-semibold text-gray-700">
-                    <Link href="/faq">How to Pick Up Tickets?</Link>
+                    <Link href="/faq/refund">How to Refund?</Link>
                   </dt>
                   <dt className="font-semibold text-gray-700">
-                    <Link href="/faq">Ticket Pickup Station?</Link>
+                    <Link href="/faq/pickup">How to Pick Up Tickets?</Link>
                   </dt>
                   <dt className="font-semibold text-gray-700">
-                    <Link href="/faq">Ticket Protection?</Link>
+                    <Link href="/faq/terms-conditions">Terms & Conditions</Link>
+                  </dt>
+                  <dt className="font-semibold text-gray-700">
+                    <Link href="/faq/privacy-policy">Privacy Policy</Link>
                   </dt>
                 </dl>
               </div>
