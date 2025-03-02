@@ -2,6 +2,7 @@
 import { useState } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -49,7 +50,9 @@ export default function RootLayout({ children }) {
             <Navbar />
           </div>
         </header>
-        <main>{children}</main>
+        <main>
+          <SessionProvider>{children}</SessionProvider>
+        </main>
 
         <AboutUs />
 
