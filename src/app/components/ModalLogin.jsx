@@ -57,7 +57,7 @@ const ModalLogin = ({ onClose }) => {
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-            <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 w-full rounded transition duration-300">
+            <button className="bg-red-500 hover:bg-red-600 text-black px-4 py-2 w-full rounded transition duration-300">
               Sign In
             </button>
             <div className="text-center mt-4">
