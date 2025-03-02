@@ -1,13 +1,19 @@
 import Image from "next/image";
 
 /* Components */
+import Carousel from "./components/Carousel";
 
 export default function Home() {
   return (
     <>
       <div>
-        <div className="font-bold text-4xl text-center text-[#333]">DISCOVER EVENTS</div>
-        <p href="" className="font-bold text-2xl text-center text-[#333]">"จองได้" ก็ "จ่ายตังค์"</p>
+        {/* Poster Sliders */}
+        <Carousel />
+
+        <div className="font-bold text-4xl text-center text-[#333]">
+          DISCOVER EVENTS
+        </div>
+        
         <form className="max-w-2xl mx-auto">
           <label
             htmlFor="default-search"

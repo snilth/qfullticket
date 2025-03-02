@@ -20,7 +20,7 @@ const ModalLogin = ({ onClose }) => {
           <button
             onClick={() => setIsLogin(true)}
             className={`px-4 py-2 rounded-l-md ${
-              isLogin ? "bg-red-500 text-white" : "bg-gray-200"
+              isLogin ? "bg-red-500 text-white" : "bg-gray-200 text-slate-400"
             } transition`}
           >
             Sign In
@@ -28,7 +28,7 @@ const ModalLogin = ({ onClose }) => {
           <button
             onClick={() => setIsLogin(false)}
             className={`px-4 py-2 rounded-r-md ${
-              !isLogin ? "bg-red-500 text-white" : "bg-gray-200"
+              !isLogin ? "bg-red-500 text-white" : "bg-gray-200 text-slate-400"
             } transition`}
           >
             Sign Up
