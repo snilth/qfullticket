@@ -5,10 +5,10 @@ import { useState } from "react";
 const ModalLogin = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
   const togglePassword = () => setShowPassword(!showPassword);
 
@@ -20,21 +20,21 @@ const ModalLogin = ({ onClose }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(''); // clear error
+    setError(""); // clear error
 
     // check email
     if (!validateEmail(email)) {
-      setError('Please enter a valid email address.');
+      setError("Please enter a valid email address.");
       return;
     }
 
     // check password
     if (!password) {
-      setError('Please enter your password.');
+      setError("Please enter your password.");
       return;
     }
 
-    const result = await signIn('credentials', {
+    const result = await signIn("credentials", {
       redirect: false,
       email,
       password,
@@ -49,40 +49,40 @@ const ModalLogin = ({ onClose }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError(''); // clear error
+    setError(""); // clear error
 
     // check email
     if (!validateEmail(email)) {
-      setError('Please enter a valid email address.');
+      setError("Please enter a valid email address.");
       return;
     }
 
     // check password
     if (!password) {
-      setError('Please enter your password.');
+      setError("Please enter your password.");
       return;
     }
 
     // check confirm password
     if (password !== confirmPassword) {
-      setError('Passwords do not match.');
+      setError("Passwords do not match.");
       return;
     }
 
-    const response = await fetch('/api/register', {
-      method: 'POST',
+    const response = await fetch("/api/register", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
 
     if (response.ok) {
-      alert('User created successfully');
+      alert("User created successfully");
       setIsLogin(true);
     } else {
       const data = await response.json();
-      setError(data.message || 'An error occurred during signup.');
+      setError(data.message || "An error occurred during signup.");
     }
   };
 
@@ -123,7 +123,9 @@ const ModalLogin = ({ onClose }) => {
 
         {isLogin ? (
           <form onSubmit={handleLogin}>
-            <h2 className="text-xl text-black font-bold mb-4 text-center">Sign In</h2>
+            <h2 className="text-xl text-black font-bold mb-4 text-center">
+              Sign In
+            </h2>
             <input
               type="email"
               placeholder="Email"
@@ -147,7 +149,10 @@ const ModalLogin = ({ onClose }) => {
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-            <button type="submit" className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 w-full rounded transition duration-300">
+            <button
+              type="submit"
+              className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 w-full rounded transition duration-300"
+            >
               Sign In
             </button>
             <div className="text-center mt-4">
@@ -157,18 +162,10 @@ const ModalLogin = ({ onClose }) => {
             </div>
           </form>
         ) : (
-<<<<<<< HEAD
           <form onSubmit={handleSignup}>
-            <h2 className="text-xl font-bold mb-4 text-center">Sign Up</h2>
-=======
-          <div>
-            <h2 className="text-xl text-black font-bold mb-4 text-center">Sign Up</h2>
-            <input
-              type="text"
-              placeholder="Username"
-              className="w-full p-2 mb-3 border rounded focus:ring-2 focus:ring-red-500"
-            />
->>>>>>> 18615819c597f2f57b6fc92c6d96b03a988b31b4
+            <h2 className="text-xl text-black font-bold mb-4 text-center">
+              Sign Up
+            </h2>
             <input
               type="email"
               placeholder="Email"
@@ -199,7 +196,10 @@ const ModalLogin = ({ onClose }) => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="text-[#333] w-full p-2 mb-3 border rounded focus:ring-2 focus:ring-red-500"
             />
-            <button type="submit" className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 w-full rounded transition duration-300">
+            <button
+              type="submit"
+              className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 w-full rounded transition duration-300"
+            >
               Sign Up
             </button>
           </form>
