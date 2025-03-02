@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-/* import { signIn } from 'next-auth/client'; */
+import { signIn } from 'next-auth/react';
 
 const ModalLogin = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -34,16 +34,22 @@ const ModalLogin = ({ onClose }) => {
       return;
     }
 
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+    try {
+      // call signIn from NextAuth.js
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
 
-    if (result.error) {
-      setError(result.error);
-    } else {
-      onClose();
+      if (result.error) {
+        setError(result.error);
+      } else {
+        alert("Login successful!");
+        onClose(); // close Modal after Login successfully
+      }
+    } catch (error) {
+      setError("An error occurred while logging in.");
     }
   };
 
