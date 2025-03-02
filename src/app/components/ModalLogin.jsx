@@ -122,13 +122,8 @@ const ModalLogin = ({ onClose }) => {
         )}
 
         {isLogin ? (
-<<<<<<< HEAD
           <form onSubmit={handleLogin}>
             <h2 className="text-xl text-black font-bold mb-4 text-center">Sign In</h2>
-=======
-          <div>
-            <h2 className="text-xl text-black font-bold mb-4 text-center">Sign In</h2>
->>>>>>> 18615819c597f2f57b6fc92c6d96b03a988b31b4
             <input
               type="email"
               placeholder="Email"
