@@ -10,8 +10,6 @@ const ModalLogin = ({ onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  console.log(email, password, confirmPassword)
-
   const togglePassword = () => setShowPassword(!showPassword);
 
   // check valid email
@@ -124,8 +122,13 @@ const ModalLogin = ({ onClose }) => {
         )}
 
         {isLogin ? (
+<<<<<<< HEAD
           <form onSubmit={handleLogin}>
-            <h2 className="text-xl font-bold mb-4 text-center">Sign In</h2>
+            <h2 className="text-xl text-black font-bold mb-4 text-center">Sign In</h2>
+=======
+          <div>
+            <h2 className="text-xl text-black font-bold mb-4 text-center">Sign In</h2>
+>>>>>>> 18615819c597f2f57b6fc92c6d96b03a988b31b4
             <input
               type="email"
               placeholder="Email"
@@ -159,8 +162,18 @@ const ModalLogin = ({ onClose }) => {
             </div>
           </form>
         ) : (
+<<<<<<< HEAD
           <form onSubmit={handleSignup}>
             <h2 className="text-xl font-bold mb-4 text-center">Sign Up</h2>
+=======
+          <div>
+            <h2 className="text-xl text-black font-bold mb-4 text-center">Sign Up</h2>
+            <input
+              type="text"
+              placeholder="Username"
+              className="w-full p-2 mb-3 border rounded focus:ring-2 focus:ring-red-500"
+            />
+>>>>>>> 18615819c597f2f57b6fc92c6d96b03a988b31b4
             <input
               type="email"
               placeholder="Email"
@@ -201,7 +214,7 @@ const ModalLogin = ({ onClose }) => {
           <p>
             {isLogin ? (
               <>
-                Not a member?{" "}
+                <span className="text-black">Not a member?</span>{" "}
                 <button
                   onClick={() => setIsLogin(false)}
                   className="text-red-500 hover:underline"
@@ -211,7 +224,7 @@ const ModalLogin = ({ onClose }) => {
               </>
             ) : (
               <>
-                Already a member?{" "}
+                <span className="text-black">Already a member?</span>{" "}
                 <button
                   onClick={() => setIsLogin(true)}
                   className="text-red-500 hover:underline"
