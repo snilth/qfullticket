@@ -68,7 +68,7 @@ const ModalLogin = ({ onClose }) => {
           </div>
         ) : (
           <div>
-            <h2 className="text-xl font-bold mb-4 text-center">Sign Up</h2>
+            <h2 className="text-xl text-black font-bold mb-4 text-center">Sign Up</h2>
             <input
               type="text"
               placeholder="Username"
@@ -108,7 +108,7 @@ const ModalLogin = ({ onClose }) => {
           <p>
             {isLogin ? (
               <>
-                Not a member?{" "}
+                <span className="text-black">Not a member?</span>{" "}
                 <button
                   onClick={() => setIsLogin(false)}
                   className="text-red-500 hover:underline"
@@ -118,7 +118,7 @@ const ModalLogin = ({ onClose }) => {
               </>
             ) : (
               <>
-                Already a member?{" "}
+                <span className="text-black">Already a member?</span>{" "}
                 <button
                   onClick={() => setIsLogin(true)}
                   className="text-red-500 hover:underline"
