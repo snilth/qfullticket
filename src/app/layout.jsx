@@ -17,6 +17,7 @@ const geistMono = localFont({
 import Link from "next/link";
 import Navbar from "./components/Navbar";
 import ModalLogin from "./components/ModalLogin";
+import AboutUs from "./components/Footer";
 
 export default function RootLayout({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,6 +50,8 @@ export default function RootLayout({ children }) {
           </div>
         </header>
         <main>{children}</main>
+
+        <AboutUs />
 
         {/* if modal is open show ModalLogin component */}
         {isModalOpen && <ModalLogin onClose={handleCloseModal} />}
