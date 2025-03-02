@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { signIn } from 'next-auth/react';
+import { signIn } from "next-auth/react";
 
 const ModalLogin = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -90,20 +90,38 @@ const ModalLogin = ({ onClose }) => {
       return;
     }
 
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      // call Register API
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (response.ok) {
-      alert("User created successfully");
-      setIsLogin(true);
-    } else {
-      const data = await response.json();
-      setError(data.message || "An error occurred during signup.");
+      if (response.ok) {
+        alert("User created successfully");
+
+        // automatically Login after successful Registration
+        const result = await signIn("credentials", {
+          email,
+          password,
+          redirect: false,
+        });
+
+        if (result.error) {
+          setError(result.error);
+        } else {
+          alert("Login successful!");
+          onClose(); // close Modal after Login successfully
+        }
+      } else {
+        const data = await response.json();
+        setError(data.message || "An error occurred during signup.");
+      }
+    } catch (error) {
+      setError("An error occurred during signup.");
     }
   };
 
