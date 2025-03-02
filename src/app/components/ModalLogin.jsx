@@ -69,6 +69,21 @@ const ModalLogin = ({ onClose }) => {
       return;
     }
 
+    const resCheckUser = await fetch("http://localhost:3000/api/usercheck", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const { user } = await resCheckUser.json();
+
+    if (user) {
+      setError("User already exists.");
+      return;
+    }
+
     const response = await fetch("/api/register", {
       method: "POST",
       headers: {
