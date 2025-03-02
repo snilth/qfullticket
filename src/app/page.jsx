@@ -8,12 +8,20 @@ export default function Home() {
     <>
       <div>
         {/* Poster Sliders */}
-        <Carousel />
+        {/* <Carousel /> */}
+        <div className="m-4 flex justify-center items-center text-center">
+          <Image
+            src="/poster1.png"
+            alt="Poster 1"
+            width={500}
+            height={300}
+          ></Image>
+        </div>
 
         <div className="font-bold text-4xl text-center text-[#333]">
           DISCOVER EVENTS
         </div>
-        
+
         <form className="max-w-2xl mx-auto">
           <label
             htmlFor="default-search"
