@@ -70,6 +70,11 @@ const ModalLogin = ({ onClose }) => {
           <div>
             <h2 className="text-xl font-bold mb-4 text-center">Sign Up</h2>
             <input
+              type="text"
+              placeholder="Username"
+              className="w-full p-2 mb-3 border rounded focus:ring-2 focus:ring-red-500"
+            />
+            <input
               type="email"
               placeholder="Email"
               className="w-full p-2 mb-3 border rounded focus:ring-2 focus:ring-red-500"
