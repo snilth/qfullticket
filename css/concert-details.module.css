@@ -1,0 +1,87 @@
+/* css/concert-details.module.css */
+
+.container {
+    background: linear-gradient(to bottom, #f5f5f5, #333);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .concertCard {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .headerImage {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .details {
+    margin: 20px 0;
+    color: #fff;
+  }
+  
+  .detailItem {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 1rem;
+  }
+  
+  .detailItem span {
+    color: #ccc;
+  }
+  
+  .priceSection {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    color: #fff;
+  }
+  
+  .button {
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .button:hover {
+    background: #cc0000;
+  }
+  
+  .ticketStatus {
+    color: #00ff00;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 10px;
+  }
