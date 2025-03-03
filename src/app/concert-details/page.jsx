@@ -1,13 +1,33 @@
 // src/app/concert-details/page.jsx
-import React from 'react';
-import styles from '/css/concert-details.module.css'; // ปรับเส้นทางเป็น '../../css/concert-details.module.css'
+"use client";
+import React, { useState } from "react";
+import styles from "/css/concert-details.module.css"; // ปรับเส้นทางเป็น '../../css/concert-details.module.css'
+import { useSession } from "next-auth/react";
+import ModalLogin from "../components/ModalLogin"; 
+import { useRouter } from 'next/navigation'; 
 
 const ConcertDetailPage = () => {
+  const { data: session } = useSession();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const router = useRouter();
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
+  const handleBuyTicket = () => {
+    if (!session) {
+      handleOpenModal();
+    } else {
+      router.push('/seat-selection')
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.concertCard}>
-        <img 
-          src="/poster1.png" // เปลี่ยนเป็น URL รูปภาพจริง
+        <img
+          src="/poster1.png"
           alt="Jisoo 2025 Asia Tour"
           className={styles.headerImage}
         />
@@ -34,9 +54,14 @@ const ConcertDetailPage = () => {
         <div className={styles.priceSection}>
           <div>6,800 / 6,500 / 5,800</div>
         </div>
-        <button className={styles.button}>ซื้อตั๋ว</button>
+        <button className={styles.button} onClick={handleBuyTicket}>
+          ซื้อตั๋ว
+        </button>
         <div className={styles.ticketStatus}>ON SALE NOW</div>
       </div>
+
+      {/* if modal is open show ModalLogin component */}
+      {isModalOpen && <ModalLogin onClose={handleCloseModal} />}
     </div>
   );
 };
