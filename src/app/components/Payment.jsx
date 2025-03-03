@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
 const Payment = () => {
@@ -11,6 +11,15 @@ const Payment = () => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
+  const [bookingDetails, setBookingDetails] = useState(null);
+
+  // ดึงข้อมูลการจองจาก localStorage
+  useEffect(() => {
+    const details = JSON.parse(localStorage.getItem('bookingDetails'));
+    if (details) {
+      setBookingDetails(details);
+    }
+  }, []);
 
   const handleEditAddress = () => {
     setIsEditing(true);
@@ -215,9 +224,10 @@ const Payment = () => {
             {/* Booking Details */}
             <div className="mt-6">
               <p className="text-lg">ประเภท: VIP</p>
-              <p className="text-lg">โซนที่นั่ง: A15</p>
+              <p className="text-lg">โซนที่นั่ง: {bookingDetails?.zone}</p>
+              <p className="text-lg">ที่นั่ง: {bookingDetails?.seat}</p>
               <p className="text-lg">จำนวน: 1 ที่นั่ง</p>
-              <p className="text-lg">ราคาบัตร: 6,500.00</p>
+              <p className="text-lg">ราคาบัตร: {bookingDetails?.price}</p>
               <p className="text-lg">ค่าบริการในการจัดส่ง: 30.00</p>
               <p className="text-lg">วิธีการรับบัตร: -</p>
               <p className="text-lg">วิธีการชำระเงิน: -</p>
