@@ -55,7 +55,7 @@ const SeatSelectionPage = () => {
           data-carousel-item
         >
           <Image
-            src="/concert plan.png" // Ensure this image exists in your public folder or is imported correctly
+            src="/concert-plan.png" // Ensure this image exists in your public folder or is imported correctly
             className="absolute block w-full h-full object-contain -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="Slide 1"
             width={500}
