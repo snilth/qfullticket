@@ -55,7 +55,7 @@ const LowPage = () => {
         <div className="mt-6">
           <h2 className="text-lg font-semibold mb-2">Select a seat in {selectedZone}</h2>
           <div className="grid grid-cols-5 gap-2">
-            {Array.from({ length: 10 }, (_, i) => i + 1).map((seat) => (
+            {Array.from({ length: 60 }, (_, i) => i + 1).map((seat) => (
               <button
                 key={seat}
                 className={`p-4 border rounded-lg ${selectedSeat === seat ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
