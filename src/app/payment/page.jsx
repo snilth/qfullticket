@@ -2,6 +2,9 @@
 import React from "react";
 import withAuth from "../components/withAuth";
 
+// Components
+import Payment from "../components/Payment";
+
 const PaymentPage = ({ session, status }) => {
   if (!session) {
     return (
@@ -14,7 +17,11 @@ const PaymentPage = ({ session, status }) => {
     );
   }
 
-  return <div className="text-[#333]">Payment</div>;
+  return (
+    <>
+      <Payment />
+    </>
+  );
 };
 
 export default withAuth(PaymentPage);
