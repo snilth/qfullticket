@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
 const Payment = () => {
+  const [address, setAddress] = useState({
+    street: "",
+    subDistrict: "",
+    district: "",
+    province: "",
+    postalCode: "",
+  });
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditAddress = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveAddress = (e) => {
+    e.preventDefault();
+    setIsEditing(false);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+  };
+
   return (
     <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto space-y-4">
       <div className="flex justify-start items-start space-y-2 flex-col">
-        <h1 className="text-[#333] text-3xl  lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
+        <h1 className="text-[#333] text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
           My Ticket
         </h1>
         <p className="text-base dark:text-gray-300 font-medium leading-6 text-gray-600">
@@ -35,17 +58,95 @@ const Payment = () => {
 
             {/* Customer's Address */}
             <div className="mt-6 w-full">
-              <h3 className="font-semibold text-xl">ที่อยู่</h3>
-              <div className="mt-4 space-y-2">
-                <p className="text-lg dark:text-gray-300">
-                  123/456 ถนนสุขุมวิท
-                </p>
-                <p className="text-lg dark:text-gray-300">แขวงคลองเตย</p>
-                <p className="text-lg dark:text-gray-300">เขตคลองเตย</p>
-                <p className="text-lg dark:text-gray-300">
-                  กรุงเทพมหานคร 10110
-                </p>
+              <div className="flex justify-between items-center">
+                <h3 className="font-semibold text-xl">ที่อยู่</h3>
+                <button
+                  onClick={handleEditAddress}
+                  className="text-blue-500 hover:text-blue-600"
+                >
+                  แก้ไขที่อยู่
+                </button>
               </div>
+              {isEditing ? (
+                <form onSubmit={handleSaveAddress} className="mt-4 space-y-2">
+                  <input
+                    type="text"
+                    value={address.street}
+                    onChange={(e) =>
+                      setAddress({ ...address, street: e.target.value })
+                    }
+                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+                    placeholder="ถนน"
+                  />
+                  <input
+                    type="text"
+                    value={address.subDistrict}
+                    onChange={(e) =>
+                      setAddress({ ...address, subDistrict: e.target.value })
+                    }
+                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+                    placeholder="แขวง"
+                  />
+                  <input
+                    type="text"
+                    value={address.district}
+                    onChange={(e) =>
+                      setAddress({ ...address, district: e.target.value })
+                    }
+                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+                    placeholder="เขต"
+                  />
+                  <input
+                    type="text"
+                    value={address.province}
+                    onChange={(e) =>
+                      setAddress({ ...address, province: e.target.value })
+                    }
+                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+                    placeholder="จังหวัด"
+                  />
+                  <input
+                    type="text"
+                    value={address.postalCode}
+                    onChange={(e) =>
+                      setAddress({ ...address, postalCode: e.target.value })
+                    }
+                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+                    placeholder="รหัสไปรษณีย์"
+                  />
+                  <div className="flex space-x-2">
+                    <button
+                      type="submit"
+                      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    >
+                      บันทึก
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleCancelEdit}
+                      className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                    >
+                      ยกเลิก
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <div className="mt-4 space-y-2">
+                  <p className="text-lg dark:text-gray-300">{address.street}</p>
+                  <p className="text-lg dark:text-gray-300">
+                    {address.subDistrict}
+                  </p>
+                  <p className="text-lg dark:text-gray-300">
+                    {address.district}
+                  </p>
+                  <p className="text-lg dark:text-gray-300">
+                    {address.province}
+                  </p>
+                  <p className="text-lg dark:text-gray-300">
+                    {address.postalCode}
+                  </p>
+                </div>
+              )}
             </div>
             <hr />
 
@@ -54,33 +155,40 @@ const Payment = () => {
               <h3 className="font-semibold text-xl">วิธีการชำระเงิน</h3>
               <ul className="space-y-4 mt-4">
                 <li className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex justify-center items-center">
-                    <span className="text-white">VISA</span>
+                  <div className="w-8 h-8 bg-orange-600 rounded-full flex justify-center items-center">
+                    <span className="text-white">Credit</span>
                   </div>
-                  <p className="text-lg">Visa Credit Card ending in 1234</p>
+                  <p className="text-lg">ชำระเงินด้วยบัตรเครดิต / เดบิต</p>
                 </li>
                 <li className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-green-600 rounded-full flex justify-center items-center">
-                    <span className="text-white">M</span>
+                    <span className="text-white">iBank</span>
                   </div>
-                  <p className="text-lg">MasterCard ending in 5678</p>
+                  <p className="text-lg">ชำระเงินผ่านบัญชีธนาคาร</p>
                 </li>
               </ul>
             </div>
 
             {/* Pickup Methods */}
             <div className="mt-6 w-full">
-              <h3 className="font-semibold text-xl py-[17px]">วิธีการรับบัตร</h3>
-              <ul className="space-y-4 mt-4">
+              <h3 className="font-semibold text-xl py-[17px]">
+                วิธีการรับบัตร
+              </h3>
+              <ul className="space-y-4">
                 <li className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex justify-center items-center">
-                    <span className="text-white">VISA</span>
+                  <div className="w-8 h-8 bg-violet-600 rounded-full flex justify-center items-center">
+                    <span className="text-white">Self</span>
                   </div>
                   <p className="text-lg">รับบัตรด้วยตัวเอง</p>
                 </li>
+                <li className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex justify-center items-center">
+                    <span className="text-white">Post</span>
+                  </div>
+                  <p className="text-lg">ส่งทางไปรษณีย์</p>
+                </li>
               </ul>
             </div>
-        
           </div>
         </div>
 
@@ -107,7 +215,7 @@ const Payment = () => {
             {/* Booking Details */}
             <div className="mt-6">
               <p className="text-lg">ประเภท: VIP</p>
-              <p className="text-lg mt-2">โซนที่นั่ง: A15</p>
+              <p className="text-lg">โซนที่นั่ง: A15</p>
               <p className="text-lg">จำนวน: 1 ที่นั่ง</p>
               <p className="text-lg">ราคาบัตร: 6,500.00</p>
               <p className="text-lg">ค่าบริการในการจัดส่ง: 30.00</p>
@@ -121,7 +229,9 @@ const Payment = () => {
             <div className="flex justify-between font-bold text-xl mt-2">
               <span className="text-red-500">6,530.00</span>
             </div>
-            <button className="p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">ชำระเงิน</button>
+            <button className="p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+              ชำระเงิน
+            </button>
           </div>
         </div>
       </div>
