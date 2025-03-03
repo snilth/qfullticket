@@ -26,7 +26,7 @@ const authOptions = {
                         return null;
                     }
 
-                    // ส่งคืนข้อมูลผู้ใช้เพิ่มเติม
+                    // return user details
                     return {
                         id: user._id,
                         name: user.name,
@@ -52,7 +52,7 @@ const authOptions = {
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                // เพิ่มข้อมูลผู้ใช้ลงใน Token
+                // add user details in token
                 return {
                     ...token,
                     id: user.id,
@@ -65,7 +65,7 @@ const authOptions = {
             return token;
         },
         async session({ session, token }) {
-            // เพิ่มข้อมูลผู้ใช้ลงใน Session
+            // add user details in session
             return {
                 ...session,
                 user: {

@@ -57,6 +57,9 @@ const ModalLogin = ({ onClose }) => {
     e.preventDefault();
     setError(""); // clear error
 
+    console.log("Signup Data:", { email, password, confirmPassword });
+
+
     // check email
     if (!validateEmail(email)) {
       setError("Please enter a valid email address.");

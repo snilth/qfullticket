@@ -4,7 +4,7 @@ const seatSchema = new mongoose.Schema({
   zone: {
     type: String,
     required: true,
-    enum: ["VIP1", "VIP2", "VIP3"], // โซนที่กำหนด
+    enum: ["VIP1", "VIP2", "VIP3"],
   },
   seatNumber: {
     type: Number,
