@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Import useRouter for navigation
 import Image from 'next/image'; // Import Image component from next/image
+import { useSession } from 'next-auth/react';
+import ModalLogin from '../components/ModalLogin';
 
 const SeatSelectionPage = () => {
   const router = useRouter(); // Use useRouter for navigation
@@ -10,6 +12,10 @@ const SeatSelectionPage = () => {
   // State to store the selected zone and current slide for carousel
   const [selectedZone, setSelectedZone] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  /* check if user logged in */
+  const { data: session } = useSession(); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   // Data for seating zones from the image
   const seatingZones = [
@@ -23,16 +29,20 @@ const SeatSelectionPage = () => {
   };
 
   const handleConfirm = () => {
-    if (selectedZone === 'VIP (THB 6,500)') {
-      router.push('/seat-selection/vip'); // Navigate to VIP page for VIP zone
-    } else if (selectedZone === 'THB 6,300') {
-      router.push('/seat-selection/middle'); // Navigate to middle zone page
-    } else if (selectedZone === 'THB 5,800') {
-      router.push('/seat-selection/low'); // Navigate to low zone page
-    } else if (selectedZone) {
-      alert(`You selected ${selectedZone}. This zone does not have a dedicated page yet.`);
+    if (!session) {
+      setIsModalOpen(true); 
     } else {
-      alert('Please select a zone before confirming.');
+      if (selectedZone === 'VIP (THB 6,500)') {
+        router.push('/seat-selection/vip'); // Navigate to VIP page for VIP zone
+      } else if (selectedZone === 'THB 6,300') {
+        router.push('/seat-selection/middle'); // Navigate to middle zone page
+      } else if (selectedZone === 'THB 5,800') {
+        router.push('/seat-selection/low'); // Navigate to low zone page
+      } else if (selectedZone) {
+        alert(`You selected ${selectedZone}. This zone does not have a dedicated page yet.`);
+      } else {
+        alert('Please select a zone before confirming.');
+      }
     }
   };
 
@@ -85,11 +95,15 @@ const SeatSelectionPage = () => {
         <button
           className="w-full p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200"
           onClick={handleConfirm}
+
           disabled={!selectedZone} // Disable button if no zone is selected
         >
           Confirm
         </button>
       </div>
+
+      {/* if modal is open show ModalLogin component */}
+      {isModalOpen && <ModalLogin onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };
