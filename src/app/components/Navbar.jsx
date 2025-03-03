@@ -47,6 +47,14 @@ const Navbar = () => {
                 Order History
               </Link>
             </li>
+            <li className="">
+              <Link
+                href={"/faq/buy"}
+                className="hover:text-red-500 hover:bg-[#444] rounded-md p-4 transition-all duration-300 ease-in-out"
+              >
+                FAQ
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
