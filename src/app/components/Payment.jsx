@@ -41,15 +41,15 @@ const Payment = () => {
         <div className="flex flex-col justify-start items-start w-full xl:w-2/3 space-y-4 md:space-y-6 xl:space-y-8">
           {/* Customer's Info */}
           <div className="flex flex-col justify-start items-start bg-white dark:bg-gray-800 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full shadow-lg rounded-lg">
-            <h3 className="font-semibold text-xl">ข้อมูลสมาชิก</h3>
+            <h3 className="font-semibold text-xl text-black">ข้อมูลสมาชิก</h3>
             <br />
             <div className="flex items-center space-x-4">
               <FaUserCircle className="text-5xl text-gray-800 dark:text-white" />
               <div>
-                <h3 className="font-semibold text-xl dark:text-white">
+                <h3 className="font-semibold text-xl text-black dark:text-white">
                   อิสรา พิชัยรัตน์
                 </h3>
-                <p className="text-lg dark:text-gray-300">
+                <p className="text-lg text-black dark:text-gray-300">
                   issarapichairat@gmail.com
                 </p>
               </div>
@@ -59,7 +59,7 @@ const Payment = () => {
             {/* Customer's Address */}
             <div className="mt-6 w-full">
               <div className="flex justify-between items-center">
-                <h3 className="font-semibold text-xl">ที่อยู่</h3>
+                <h3 className="font-semibold text-xl text-black">ที่อยู่</h3>
                 <button
                   onClick={handleEditAddress}
                   className="text-blue-500 hover:text-blue-600"
@@ -152,26 +152,26 @@ const Payment = () => {
 
             {/* Payment Methods */}
             <div className="mt-6 w-full">
-              <h3 className="font-semibold text-xl">วิธีการชำระเงิน</h3>
+              <h3 className="font-semibold text-xl text-black">วิธีการชำระเงิน</h3>
               <ul className="space-y-4 mt-4">
                 <li className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-orange-600 rounded-full flex justify-center items-center">
                     <span className="text-white">Credit</span>
                   </div>
-                  <p className="text-lg">ชำระเงินด้วยบัตรเครดิต / เดบิต</p>
+                  <p className="text-lg text-black">ชำระเงินด้วยบัตรเครดิต / เดบิต</p>
                 </li>
                 <li className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-green-600 rounded-full flex justify-center items-center">
                     <span className="text-white">iBank</span>
                   </div>
-                  <p className="text-lg">ชำระเงินผ่านบัญชีธนาคาร</p>
+                  <p className="text-lg text-black">ชำระเงินผ่านบัญชีธนาคาร</p>
                 </li>
               </ul>
             </div>
 
             {/* Pickup Methods */}
             <div className="mt-6 w-full">
-              <h3 className="font-semibold text-xl py-[17px]">
+              <h3 className="font-semibold text-xl py-[17px] text-black">
                 วิธีการรับบัตร
               </h3>
               <ul className="space-y-4">
@@ -179,13 +179,13 @@ const Payment = () => {
                   <div className="w-8 h-8 bg-violet-600 rounded-full flex justify-center items-center">
                     <span className="text-white">Self</span>
                   </div>
-                  <p className="text-lg">รับบัตรด้วยตัวเอง</p>
+                  <p className="text-lg text-black">รับบัตรด้วยตัวเอง</p>
                 </li>
                 <li className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-blue-600 rounded-full flex justify-center items-center">
                     <span className="text-white">Post</span>
                   </div>
-                  <p className="text-lg">ส่งทางไปรษณีย์</p>
+                  <p className="text-lg text-black">ส่งทางไปรษณีย์</p>
                 </li>
               </ul>
             </div>
