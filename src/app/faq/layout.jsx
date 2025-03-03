@@ -33,14 +33,6 @@ const FAQLayout = ({ children }) => {
           </li>
           <li className="mb-2">
             <Link
-              href="/faq/pickup-ticket"
-              className="text-blue-600 hover:underline"
-            >
-              Pick Up Ticket
-            </Link>
-          </li>
-          <li className="mb-2">
-            <Link
               href="/faq/terms-conditions"
               className="text-blue-600 hover:underline"
             >
