@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -43,7 +42,8 @@ const VIPPageOne = () => {
   
         if (response.ok) {
           console.log("API Response:", data);
-          setConfirmedSeats([...confirmedSeats, selectedSeat]);
+          
+          setConfirmedSeats((prevSeats) => [...prevSeats, selectedSeat]);
           router.push("/payment");
         } else {
           console.log("API Error:", data);
@@ -55,6 +55,7 @@ const VIPPageOne = () => {
       }
     }
   };
+  
 
   return (
     <div className="text-[#333] p-6">
@@ -91,13 +92,13 @@ const VIPPageOne = () => {
                 key={seat}
                 className={`p-4 border rounded-lg ${
                   selectedSeat === seat
-                    ? "bg-blue-500 text-white" // สีเมื่อเลือกที่นั่ง
+                    ? "bg-blue-500 text-white" 
                     : confirmedSeats.includes(seat)
-                    ? "bg-red-500 text-white" // สีเมื่อที่นั่งถูกจองแล้ว
-                    : "bg-gray-200" // สีปกติ
+                    ? "bg-red-500 text-white" 
+                    : "bg-gray-200" 
                 }`}
                 onClick={() => handleSeatSelect(seat)}
-                disabled={confirmedSeats.includes(seat)} // ปิดการใช้งานปุ่มที่นั่งที่ถูกจองแล้ว
+                disabled={confirmedSeats.includes(seat)} 
               >
                 {seat}
               </button>

@@ -1,25 +1,27 @@
-'use client';
-
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const LowPage = () => {
-  const [selectedZone, setSelectedZone] = useState('');
+  const [selectedZone, setSelectedZone] = useState("");
   const [selectedSeat, setSelectedSeat] = useState(null);
+  const [confirmedSeats, setConfirmedSeats] = useState([]);
+  const router = useRouter();
 
   const seatingZones = [
-    { name: 'SB', color: 'bg-blue-200', price: '5,800' },
-    { name: 'SC', color: 'bg-orange-200', price: '5,800' },
-    { name: 'SD', color: 'bg-red-200', price: '5,800' },
-    { name: 'SE', color: 'bg-blue-200', price: '5,800' },
-    { name: 'SF', color: 'bg-orange-200', price: '5,800' },
-    { name: 'SG', color: 'bg-red-200', price: '5,800' },
-    { name: 'SH', color: 'bg-blue-200', price: '5,800' },
-    { name: 'SI', color: 'bg-orange-200', price: '5,800' },
-    { name: 'SJ', color: 'bg-red-200', price: '5,800' },
-    { name: 'SK', color: 'bg-blue-200', price: '5,800' },
-    { name: 'SL', color: 'bg-orange-200', price: '5,800' },
-    { name: 'SM', color: 'bg-red-200', price: '5,800' },
-    { name: 'SN', color: 'bg-red-200', price: '5,800' },
+    { name: "SB", color: "bg-blue-200", price: "5,800" },
+    { name: "SC", color: "bg-orange-200", price: "5,800" },
+    { name: "SD", color: "bg-red-200", price: "5,800" },
+    { name: "SE", color: "bg-blue-200", price: "5,800" },
+    { name: "SF", color: "bg-orange-200", price: "5,800" },
+    { name: "SG", color: "bg-red-200", price: "5,800" },
+    { name: "SH", color: "bg-blue-200", price: "5,800" },
+    { name: "SI", color: "bg-orange-200", price: "5,800" },
+    { name: "SJ", color: "bg-red-200", price: "5,800" },
+    { name: "SK", color: "bg-blue-200", price: "5,800" },
+    { name: "SL", color: "bg-orange-200", price: "5,800" },
+    { name: "SM", color: "bg-red-200", price: "5,800" },
+    { name: "SN", color: "bg-red-200", price: "5,800" },
   ];
 
   const handleZoneChange = (event) => {
@@ -31,11 +33,44 @@ const LowPage = () => {
     setSelectedSeat(seatNumber);
   };
 
+  const handleConfirmSeat = async () => {
+    if (selectedSeat !== null) {
+      try {
+        console.log("Booking seat:", { zone: selectedZone, seat: selectedSeat });
+
+        const response = await fetch(
+          `http://localhost:3000/api/bookings/${selectedZone}/${selectedSeat}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId: "65a1b2c3d4e5f6a7b8c9d0e1" }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          console.log("API Response:", data);
+          setConfirmedSeats((prevSeats) => [...prevSeats, selectedSeat]);
+          router.push("/payment");
+        } else {
+          console.log("API Error:", data);
+          alert(data.message || "Booking failed. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error booking seat:", error);
+        alert("Failed to book seat. Please try again.");
+      }
+    }
+  };
+
   return (
     <div className="text-[#333] p-6">
-      <h1 className="text-2xl font-bold mb-4">Seat Selection</h1>
-      <p>Select your preferred seat.</p>
-      
+      <h1 className="text-2xl font-bold mb-4">Low Seat Selection</h1>
+      <p>Select your preferred Low seat.</p>
+
       {/* Zone Selection */}
       <div className="max-w-md mx-auto space-y-4">
         <select
@@ -43,23 +78,34 @@ const LowPage = () => {
           onChange={handleZoneChange}
           value={selectedZone}
         >
-          <option value="" disabled>Choose a zone...</option>
+          <option value="" disabled>
+            Choose a zone...
+          </option>
           {seatingZones.map((zone, index) => (
-            <option key={index} value={zone.name}>{zone.name} - THB {zone.price}</option>
+            <option key={index} value={zone.name}>
+              {zone.name} - THB {zone.price}
+            </option>
           ))}
         </select>
       </div>
-      
+
       {/* Seat Selection */}
       {selectedZone && (
         <div className="mt-6">
           <h2 className="text-lg font-semibold mb-2">Select a seat in {selectedZone}</h2>
           <div className="grid grid-cols-5 gap-2">
-            {Array.from({ length: 60 }, (_, i) => i + 1).map((seat) => (
+            {Array.from({ length: 40 }, (_, i) => i + 1).map((seat) => (
               <button
                 key={seat}
-                className={`p-4 border rounded-lg ${selectedSeat === seat ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                className={`p-4 border rounded-lg ${
+                  selectedSeat === seat
+                    ? "bg-blue-500 text-white"
+                    : confirmedSeats.includes(seat)
+                    ? "bg-red-500 text-white"
+                    : "bg-gray-200"
+                }`}
                 onClick={() => handleSeatSelect(seat)}
+                disabled={confirmedSeats.includes(seat)}
               >
                 {seat}
               </button>
@@ -67,14 +113,15 @@ const LowPage = () => {
           </div>
         </div>
       )}
-      
+
       {/* Confirm Button */}
       <div className="mt-6">
         <button
           className="w-full p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200"
+          onClick={handleConfirmSeat}
           disabled={!selectedZone || selectedSeat === null}
         >
-          Confirm Seat {selectedSeat !== null ? `#${selectedSeat}` : ''}
+          Confirm Seat {selectedSeat !== null ? `#${selectedSeat}` : ""}
         </button>
       </div>
     </div>
