@@ -45,7 +45,7 @@ const Carousel = () => {
           data-carousel-item
         >
           <Image
-            src="/art2.jpg"
+            src="/poster2.png"
             className="absolute block w-full h-full object-contain -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="Slide 2"
             width={500}
@@ -60,7 +60,7 @@ const Carousel = () => {
           data-carousel-item
         >
           <Image
-            src="/art3.jpg"
+            src="/poster3.png"
             className="absolute block w-full h-full object-contain -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="Slide 3"
             width={500}
