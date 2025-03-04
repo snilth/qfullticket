@@ -2,15 +2,6 @@ import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
 const Payment = () => {
-  const [address, setAddress] = useState({
-    street: "",
-    subDistrict: "",
-    district: "",
-    province: "",
-    postalCode: "",
-  });
-
-  const [isEditing, setIsEditing] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
 
   // ดึงข้อมูลการจองจาก localStorage
@@ -20,19 +11,6 @@ const Payment = () => {
       setBookingDetails(details);
     }
   }, []);
-
-  const handleEditAddress = () => {
-    setIsEditing(true);
-  };
-
-  const handleSaveAddress = (e) => {
-    e.preventDefault();
-    setIsEditing(false);
-  };
-
-  const handleCancelEdit = () => {
-    setIsEditing(false);
-  };
 
   return (
     <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto space-y-4">
@@ -46,7 +24,7 @@ const Payment = () => {
       </div>
 
       <div className="flex flex-col xl:flex-row justify-between items-start w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
-        {/* Left Side (Customer's Info, Address, Payment Methods, and Pickup Methods) */}
+        {/* Left Side (Customer's Info, Payment Methods, and Pickup Methods) */}
         <div className="flex flex-col justify-start items-start w-full xl:w-2/3 space-y-4 md:space-y-6 xl:space-y-8">
           {/* Customer's Info */}
           <div className="flex flex-col justify-start items-start bg-white dark:bg-gray-800 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full shadow-lg rounded-lg">
@@ -62,100 +40,6 @@ const Payment = () => {
                   issarapichairat@gmail.com
                 </p>
               </div>
-            </div>
-            <hr />
-
-            {/* Customer's Address */}
-            <div className="mt-6 w-full">
-              <div className="flex justify-between items-center">
-                <h3 className="font-semibold text-xl text-black">ที่อยู่</h3>
-                <button
-                  onClick={handleEditAddress}
-                  className="text-blue-500 hover:text-blue-600"
-                >
-                  แก้ไขที่อยู่
-                </button>
-              </div>
-              {isEditing ? (
-                <form onSubmit={handleSaveAddress} className="mt-4 space-y-2">
-                  <input
-                    type="text"
-                    value={address.street}
-                    onChange={(e) =>
-                      setAddress({ ...address, street: e.target.value })
-                    }
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-                    placeholder="ถนน"
-                  />
-                  <input
-                    type="text"
-                    value={address.subDistrict}
-                    onChange={(e) =>
-                      setAddress({ ...address, subDistrict: e.target.value })
-                    }
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-                    placeholder="แขวง"
-                  />
-                  <input
-                    type="text"
-                    value={address.district}
-                    onChange={(e) =>
-                      setAddress({ ...address, district: e.target.value })
-                    }
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-                    placeholder="เขต"
-                  />
-                  <input
-                    type="text"
-                    value={address.province}
-                    onChange={(e) =>
-                      setAddress({ ...address, province: e.target.value })
-                    }
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-                    placeholder="จังหวัด"
-                  />
-                  <input
-                    type="text"
-                    value={address.postalCode}
-                    onChange={(e) =>
-                      setAddress({ ...address, postalCode: e.target.value })
-                    }
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
-                    placeholder="รหัสไปรษณีย์"
-                  />
-                  <div className="flex space-x-2">
-                    <button
-                      type="submit"
-                      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                    >
-                      บันทึก
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleCancelEdit}
-                      className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-                    >
-                      ยกเลิก
-                    </button>
-                  </div>
-                </form>
-              ) : (
-                <div className="mt-4 space-y-2">
-                  <p className="text-lg dark:text-gray-300">{address.street}</p>
-                  <p className="text-lg dark:text-gray-300">
-                    {address.subDistrict}
-                  </p>
-                  <p className="text-lg dark:text-gray-300">
-                    {address.district}
-                  </p>
-                  <p className="text-lg dark:text-gray-300">
-                    {address.province}
-                  </p>
-                  <p className="text-lg dark:text-gray-300">
-                    {address.postalCode}
-                  </p>
-                </div>
-              )}
             </div>
             <hr />
 
@@ -189,12 +73,6 @@ const Payment = () => {
                     <span className="text-white">Self</span>
                   </div>
                   <p className="text-lg text-black">รับบัตรด้วยตัวเอง</p>
-                </li>
-                <li className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex justify-center items-center">
-                    <span className="text-white">Post</span>
-                  </div>
-                  <p className="text-lg text-black">ส่งทางไปรษณีย์</p>
                 </li>
               </ul>
             </div>
