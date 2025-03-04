@@ -1,16 +1,32 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { useSession } from "next-auth/react";
 
 const Payment = () => {
   const [bookingDetails, setBookingDetails] = useState(null);
+  const { data: session, status } = useSession();
 
-  // ดึงข้อมูลการจองจาก localStorage
   useEffect(() => {
-    const details = JSON.parse(localStorage.getItem('bookingDetails'));
+    const details = JSON.parse(localStorage.getItem("bookingDetails"));
     if (details) {
       setBookingDetails(details);
     }
   }, []);
+
+  // debug session data
+  useEffect(() => {
+    console.log("Session Status:", status);
+    console.log("Session Data:", session);
+  }, [session, status]);
+
+  // conbine fullname: use name alone if lastname is undefined
+  const fullName =
+    status === "authenticated" && session?.user?.name
+      ? `${session.user.name}${session.user.lastname ? ` ${session.user.lastname}` : ""}`
+      : "Loading...";
+
+  const email = status === "authenticated" ? session?.user?.email || "Loading..." : "Loading...";
 
   return (
     <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto space-y-4">
@@ -34,11 +50,9 @@ const Payment = () => {
               <FaUserCircle className="text-5xl text-gray-800 dark:text-white" />
               <div>
                 <h3 className="font-semibold text-xl text-black dark:text-white">
-                  อิสรา พิชัยรัตน์
+                  {fullName}
                 </h3>
-                <p className="text-lg text-black dark:text-gray-300">
-                  issarapichairat@gmail.com
-                </p>
+                <p className="text-lg text-black dark:text-gray-300">{email}</p>
               </div>
             </div>
             <hr />

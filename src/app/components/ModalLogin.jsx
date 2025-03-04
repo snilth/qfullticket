@@ -23,22 +23,19 @@ const ModalLogin = ({ onClose }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // clear error
+    setError(""); 
 
-    // check email
     if (!validateEmail(email)) {
       setError("Please enter a valid email address.");
       return;
     }
 
-    // check password
     if (!password) {
       setError("Please enter your password.");
       return;
     }
 
     try {
-      // call signIn from NextAuth.js
       const result = await signIn("credentials", {
         email,
         password,
@@ -49,7 +46,7 @@ const ModalLogin = ({ onClose }) => {
         setError(result.error);
       } else {
         alert("Login successful!");
-        onClose(); // close Modal after Login successfully
+        onClose();
       }
     } catch (error) {
       setError("An error occurred while logging in.");
@@ -58,28 +55,25 @@ const ModalLogin = ({ onClose }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError(""); // clear error
-  
+    setError(""); 
+
     console.log("Signup Data:", { name, lastname, email, password, confirmPassword });
-  
-    // check email
+
     if (!validateEmail(email)) {
       setError("Please enter a valid email address.");
       return;
     }
-  
-    // check password
+
     if (!password) {
       setError("Please enter your password.");
       return;
     }
-  
-    // check confirm password
+
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
-  
+
     const resCheckUser = await fetch("/api/usercheck", {
       method: "POST",
       headers: {
@@ -87,16 +81,15 @@ const ModalLogin = ({ onClose }) => {
       },
       body: JSON.stringify({ email }),
     });
-  
+
     const { user } = await resCheckUser.json();
-  
+
     if (user) {
       setError("User already exists.");
       return;
     }
-  
+
     try {
-      // call Register API
       const response = await fetch("/api/register", {
         method: "POST",
         headers: {
@@ -104,22 +97,21 @@ const ModalLogin = ({ onClose }) => {
         },
         body: JSON.stringify({ name, lastname, email, password }),
       });
-  
+
       if (response.ok) {
         alert("User created successfully");
-  
-        // automatically Login after successful Registration
+
         const result = await signIn("credentials", {
           email,
           password,
           redirect: false,
         });
-  
+
         if (result.error) {
           setError(result.error);
         } else {
           alert("Login successful!");
-          onClose(); // close Modal after Login successfully
+          onClose();
         }
       } else {
         const data = await response.json();
@@ -129,15 +121,11 @@ const ModalLogin = ({ onClose }) => {
       setError("An error occurred during signup.");
     }
   };
-  
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-30 bg-black bg-opacity-50">
       <div className="bg-white w-96 p-6 rounded-lg shadow-lg relative text-[#333]">
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-[#333]"
-        >
+        <button onClick={onClose} className="absolute top-2 right-2 text-[#333]">
           ×
         </button>
         <div className="flex justify-center mb-4">
@@ -159,7 +147,6 @@ const ModalLogin = ({ onClose }) => {
           </button>
         </div>
 
-        {/* show error */}
         {error && (
           <div className="mb-4 p-2 bg-red-100 text-red-600 rounded text-center">
             {error}
@@ -212,14 +199,14 @@ const ModalLogin = ({ onClose }) => {
               Sign Up
             </h2>
             <input
-              type="name"
+              type="text"
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="text-[#333] w-full p-2 mb-3 border rounded focus:ring-2 focus:ring-red-500"
             />
             <input
-              type="lastname"
+              type="text"
               placeholder="Lastname"
               value={lastname}
               onChange={(e) => setLastname(e.target.value)}
