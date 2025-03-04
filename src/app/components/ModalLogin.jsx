@@ -5,6 +5,9 @@ import { signIn } from "next-auth/react";
 const ModalLogin = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -56,43 +59,42 @@ const ModalLogin = ({ onClose }) => {
   const handleSignup = async (e) => {
     e.preventDefault();
     setError(""); // clear error
-
-    console.log("Signup Data:", { email, password, confirmPassword });
-
-
+  
+    console.log("Signup Data:", { name, lastname, email, password, confirmPassword });
+  
     // check email
     if (!validateEmail(email)) {
       setError("Please enter a valid email address.");
       return;
     }
-
+  
     // check password
     if (!password) {
       setError("Please enter your password.");
       return;
     }
-
+  
     // check confirm password
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
-
-    const resCheckUser = await fetch("http://localhost:3000/api/usercheck", {
+  
+    const resCheckUser = await fetch("/api/usercheck", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email }),
     });
-
+  
     const { user } = await resCheckUser.json();
-
+  
     if (user) {
       setError("User already exists.");
       return;
     }
-
+  
     try {
       // call Register API
       const response = await fetch("/api/register", {
@@ -100,19 +102,19 @@ const ModalLogin = ({ onClose }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, lastname, email, password }),
       });
-
+  
       if (response.ok) {
         alert("User created successfully");
-
+  
         // automatically Login after successful Registration
         const result = await signIn("credentials", {
           email,
           password,
           redirect: false,
         });
-
+  
         if (result.error) {
           setError(result.error);
         } else {
@@ -127,6 +129,7 @@ const ModalLogin = ({ onClose }) => {
       setError("An error occurred during signup.");
     }
   };
+  
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-30 bg-black bg-opacity-50">
@@ -208,6 +211,20 @@ const ModalLogin = ({ onClose }) => {
             <h2 className="text-xl text-black font-bold mb-4 text-center">
               Sign Up
             </h2>
+            <input
+              type="name"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="text-[#333] w-full p-2 mb-3 border rounded focus:ring-2 focus:ring-red-500"
+            />
+            <input
+              type="lastname"
+              placeholder="Lastname"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+              className="text-[#333] w-full p-2 mb-3 border rounded focus:ring-2 focus:ring-red-500"
+            />
             <input
               type="email"
               placeholder="Email"

@@ -4,19 +4,19 @@ import User from '../../../../models/user';
 import bcrypt from 'bcryptjs';
 
 export async function POST(req) {
-    try {
-        const { email, password } = await req.json();
-        const hashedPassword = await bcrypt.hash(password, 10);
+  try {
+    const { name, lastname, email, password } = await req.json();
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-        await connectMongoDB();
-        console.log('User data received:', { email, password: hashedPassword });
+    await connectMongoDB();
+    console.log('User data received:', { name, lastname, email, password: hashedPassword });
 
-        const user = await User.create({ email, password: hashedPassword });
-        console.log('User created:', user);
+    const user = await User.create({ name, lastname, email, password: hashedPassword });
+    console.log('User created:', user);
 
-        return NextResponse.json({ message: "User registered." }, { status: 201 });
-    } catch (error) {
-        console.error('Error during user registration:', error);
-        return NextResponse.json({ message: "An error occurred while registering the user." }, { status: 500 });
-    }
+    return NextResponse.json({ message: "User registered." }, { status: 201 });
+  } catch (error) {
+    console.error('Error during user registration:', error);
+    return NextResponse.json({ message: "An error occurred while registering the user." }, { status: 500 });
+  }
 }
