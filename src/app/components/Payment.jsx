@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const Payment = () => {
   const [bookingDetails, setBookingDetails] = useState(null);
@@ -76,7 +77,12 @@ const Payment = () => {
                   <div className="w-8 h-8 bg-green-600 rounded-full flex justify-center items-center">
                     <span className="text-white">iBank</span>
                   </div>
-                  <p className="text-lg text-[#f5f5f5]">Pay via Bank Account</p>
+                  <p className="text-lg text-[#f5f5f5]">Pay via Bank Account (QR code)</p>
+                  <Link href="/qrcode">
+                  <button className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+                  Pay
+                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -136,8 +142,8 @@ const Payment = () => {
             <div className="flex justify-between font-bold text-xl mt-2">
               <span className="text-red-500">6,530.00</span>
             </div>
-            <button className="p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
-              Pay
+            <button className="p-4 w-full mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+              Submit
             </button>
           </div>
         </div>
