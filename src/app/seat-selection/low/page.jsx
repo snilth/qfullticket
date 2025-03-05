@@ -36,7 +36,10 @@ const LowPage = () => {
   const handleConfirmSeat = async () => {
     if (selectedSeat !== null) {
       try {
-        console.log("Booking seat:", { zone: selectedZone, seat: selectedSeat });
+        console.log("Booking seat:", {
+          zone: selectedZone,
+          seat: selectedSeat,
+        });
 
         const response = await fetch(
           `http://localhost:3000/api/bookings/${selectedZone}/${selectedSeat}`,
@@ -92,7 +95,9 @@ const LowPage = () => {
       {/* Seat Selection */}
       {selectedZone && (
         <div className="mt-6">
-          <h2 className="text-lg font-semibold mb-2">Select a seat in {selectedZone}</h2>
+          <h2 className="text-lg font-semibold mb-2">
+            Select a seat in {selectedZone}
+          </h2>
           <div className="grid grid-cols-5 gap-2">
             {Array.from({ length: 40 }, (_, i) => i + 1).map((seat) => (
               <button
@@ -115,7 +120,7 @@ const LowPage = () => {
       )}
 
       {/* Confirm Button */}
-      <div className="mt-6">
+      <div className="mt-4 max-w-md mx-auto">
         <button
           className="w-full p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200"
           onClick={handleConfirmSeat}

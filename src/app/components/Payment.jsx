@@ -83,14 +83,14 @@ const Payment = () => {
                   <div className="w-8 h-8 bg-green-600 rounded-full flex justify-center items-center">
                     <span className="text-white">iBank</span>
                   </div>
-                  <button className="bg-[#222] px-3 rounded-md">
-                    <Link
-                      href={"/qrcode"}
-                      className="text-green-600 text-lg text-[#f5f5f5] hover:text-green-400"
-                    >
-                      Pay via Bank Account
-                    </Link>
-                  </button>
+                  <p className="text-lg text-[#f5f5f5]">
+                    Pay via Bank Account (QR code)
+                  </p>
+                  <Link href="/qrcode">
+                    <button className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+                      Pay
+                    </button>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -153,7 +153,7 @@ const Payment = () => {
               <span className="text-red-500">6,530.00</span>
             </div>
             <Link href={"/order-history"}>
-              <button className="p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+              <button className="p-4 w-full mt-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
                 Submit
               </button>
             </Link>

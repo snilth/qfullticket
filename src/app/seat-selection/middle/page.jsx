@@ -1,17 +1,17 @@
-'use client';
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+"use client";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const MiddlePage = () => {
-  const [selectedZone, setSelectedZone] = useState('');
+  const [selectedZone, setSelectedZone] = useState("");
   const [selectedSeat, setSelectedSeat] = useState(null);
-  const [confirmedSeats, setConfirmedSeats] = useState([]); 
+  const [confirmedSeats, setConfirmedSeats] = useState([]);
   const router = useRouter();
 
   const seatingZones = [
-    { name: 'A1', color: 'bg-blue-200', price: '6,300' },
-    { name: 'A2', color: 'bg-orange-200', price: '6,300' },
-    { name: 'A3', color: 'bg-red-200', price: '6,300' },
+    { name: "A1", color: "bg-blue-200", price: "6,300" },
+    { name: "A2", color: "bg-orange-200", price: "6,300" },
+    { name: "A3", color: "bg-red-200", price: "6,300" },
   ];
 
   const handleZoneChange = (event) => {
@@ -26,16 +26,19 @@ const MiddlePage = () => {
   const handleConfirmSeat = async () => {
     if (selectedSeat !== null) {
       try {
-        console.log("Booking seat:", { zone: selectedZone, seat: selectedSeat });
+        console.log("Booking seat:", {
+          zone: selectedZone,
+          seat: selectedSeat,
+        });
 
         const response = await fetch(
           `http://localhost:3000/api/bookings/${selectedZone}/${selectedSeat}`,
           {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify({ userId: '65a1b2c3d4e5f6a7b8c9d0e1' }),
+            body: JSON.stringify({ userId: "65a1b2c3d4e5f6a7b8c9d0e1" }),
           }
         );
 
@@ -45,10 +48,10 @@ const MiddlePage = () => {
           console.log("API Response:", data);
 
           setConfirmedSeats((prevSeats) => [...prevSeats, selectedSeat]);
-          router.push('/payment');
+          router.push("/payment");
         } else {
           console.log("API Error:", data);
-          alert(data.message || 'Booking failed, please try again.');
+          alert(data.message || "Booking failed, please try again.");
         }
       } catch (error) {
         console.error("Error booking seat:", error);
@@ -92,13 +95,13 @@ const MiddlePage = () => {
                 key={seat}
                 className={`p-4 border rounded-lg ${
                   selectedSeat === seat
-                    ? 'bg-blue-500 text-white'
+                    ? "bg-blue-500 text-white"
                     : confirmedSeats.includes(seat)
-                    ? 'bg-red-500 text-white'
-                    : 'bg-gray-200'
+                    ? "bg-red-500 text-white"
+                    : "bg-gray-200"
                 }`}
                 onClick={() => handleSeatSelect(seat)}
-                disabled={confirmedSeats.includes(seat)} 
+                disabled={confirmedSeats.includes(seat)}
               >
                 {seat}
               </button>
@@ -108,13 +111,13 @@ const MiddlePage = () => {
       )}
 
       {/* Confirm Button */}
-      <div className="mt-6">
+      <div className="mt-4 max-w-md mx-auto">
         <button
           className="w-full p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200"
           onClick={handleConfirmSeat}
           disabled={!selectedZone || selectedSeat === null}
         >
-          Confirm Seat {selectedSeat !== null ? `#${selectedSeat}` : ''}
+          Confirm Seat {selectedSeat !== null ? `#${selectedSeat}` : ""}
         </button>
       </div>
     </div>
