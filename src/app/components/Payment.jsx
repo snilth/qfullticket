@@ -120,7 +120,6 @@ const Payment = () => {
             </div>
 
             <div className="mt-6">
-              <p className="text-lg">Type: VIP</p>
               <p className="text-lg">Seating Zone: {bookingDetails?.zone || "N/A"}</p>
               <p className="text-lg">Seat: {bookingDetails?.seat || "N/A"}</p>
               <p className="text-lg">Quantity: 1 seat</p>
