@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const Payment = () => {
   const [bookingDetails, setBookingDetails] = useState(null);
@@ -49,7 +50,9 @@ const Payment = () => {
         <div className="flex flex-col justify-start items-start w-full xl:w-2/3 space-y-4 md:space-y-6 xl:space-y-8">
           {/* Customer's Info */}
           <div className="flex flex-col justify-start items-start bg-white dark:bg-[#343434] px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full shadow-lg rounded-lg">
-            <h3 className="font-semibold text-xl text-[#f5f5f5]">Member Information</h3>
+            <h3 className="font-semibold text-xl text-[#f5f5f5]">
+              Member Information
+            </h3>
             <br />
             <div className="flex items-center space-x-4">
               <FaUserCircle className="text-5xl text-gray-800 dark:text-white" />
@@ -64,19 +67,30 @@ const Payment = () => {
 
             {/* Payment Methods */}
             <div className="mt-6 w-full">
-              <h3 className="font-semibold text-xl text-[#f5f5f5]">Payment Methods</h3>
+              <h3 className="font-semibold text-xl text-[#f5f5f5]">
+                Payment Methods
+              </h3>
               <ul className="space-y-4 mt-4">
                 <li className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-orange-600 rounded-full flex justify-center items-center">
                     <span className="text-white">Credit</span>
                   </div>
-                  <p className="text-lg text-[#555] line-through">Pay with Credit/Debit Card</p>
+                  <p className="text-lg text-[#555] line-through">
+                    Pay with Credit/Debit Card
+                  </p>
                 </li>
                 <li className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-green-600 rounded-full flex justify-center items-center">
                     <span className="text-white">iBank</span>
                   </div>
-                  <p className="text-lg text-[#f5f5f5]">Pay via Bank Account</p>
+                  <button className="bg-[#222] px-3 rounded-md">
+                    <Link
+                      href={"/qrcode"}
+                      className="text-green-600 text-lg text-[#f5f5f5] hover:text-green-400"
+                    >
+                      Pay via Bank Account
+                    </Link>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -84,14 +98,16 @@ const Payment = () => {
             {/* Pickup Methods */}
             <div className="mt-6 w-full">
               <h3 className="font-semibold text-xl py-[17px] text-[#f5f5f5]">
-              Ticket Delivery Methods
+                Ticket Delivery Methods
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-violet-600 rounded-full flex justify-center items-center">
                     <span className="text-white">Self</span>
                   </div>
-                  <p className="text-lg text-[#f5f5f5]">Pick up the ticket in person</p>
+                  <p className="text-lg text-[#f5f5f5]">
+                    Pick up the ticket in person
+                  </p>
                 </li>
               </ul>
             </div>
@@ -104,7 +120,7 @@ const Payment = () => {
             <h3 className="font-semibold text-xl">Booking Details</h3>
             <div>
               <p className="mt-3 text-lg">
-              2025 TREASURE T5 UNIT ASIA TOUR : MOVE 
+                2025 TREASURE T5 UNIT ASIA TOUR : MOVE
               </p>
               <p className="text-gray-500 text-lg">
                 @ Impact, Muang Thong Thani
@@ -136,9 +152,11 @@ const Payment = () => {
             <div className="flex justify-between font-bold text-xl mt-2">
               <span className="text-red-500">6,530.00</span>
             </div>
-            <button className="p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
-              Pay
-            </button>
+            <Link href={"/order-history"}>
+              <button className="p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200">
+                Submit
+              </button>
+            </Link>
           </div>
         </div>
       </div>
